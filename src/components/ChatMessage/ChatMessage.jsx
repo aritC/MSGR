@@ -10,7 +10,7 @@ function ChatMessage(props) {
         <p>{text}</p>
       ) : (
         <a href={text} target="_blank">
-          <img src={text} width="300" height="300" />
+          <img className="attach" src={text} width="300" height="300" />
         </a>
       )}
     </div>

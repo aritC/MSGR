@@ -16,3 +16,12 @@
   background: #e5e5ea;
   color: black;
 }
+
+img.attach {
+  max-width: 300px;
+  max-height: 300px;
+  min-width: 300px;
+  max-width: 300px;
+  width: auto;
+  height: auto;
+}
