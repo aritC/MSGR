@@ -1,8 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 import ChatMessage from "../ChatMessage/ChatMessage";
 import SignOut from "../SignOut/SIgnOut";
+import { ReactComponent as Send } from "../../assets/send.svg";
+import { ReactComponent as Attach } from "../../assets/attach.svg";
 import "./Chatroom.css";
 
 function ChatRoom(props) {
@@ -32,7 +36,6 @@ function ChatRoom(props) {
       setFormValue("");
     }
     if (image !== null) await uploadImage();
-    dummy.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleUpload = (event) => {
@@ -68,6 +71,10 @@ function ChatRoom(props) {
       });
   };
 
+  useEffect(() => {
+    dummy.current.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
     <>
       <SignOut auth={auth} />
@@ -100,9 +107,15 @@ function ChatRoom(props) {
           hidden
         />
         <button type="button" onClick={handleUpload}>
-          {image === null ? "Upload Image" : "Image Added"}
+          {image === null ? (
+            <Attach style={{ fill: "white", scale: "70%" }} />
+          ) : (
+            "Image Added"
+          )}
         </button>
-        <button type="submit">Send</button>
+        <button type="submit">
+          <Send style={{ fill: "white", scale: "70%" }} />
+        </button>
       </form>
     </>
   );
